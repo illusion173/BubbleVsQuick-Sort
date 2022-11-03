@@ -1,4 +1,4 @@
-#M2-4 Programming Assignment
+# M2-4 Programming Assignment
 #### Student: Jeremiah Webb
 
 ## Chosen Sorting Algorithms
