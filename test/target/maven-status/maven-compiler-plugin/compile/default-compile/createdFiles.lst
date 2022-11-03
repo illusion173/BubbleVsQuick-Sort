@@ -1,7 +1,9 @@
 META-INF/CompilerHints
+org/sample/jmh_generated/MyBenchmark_bubble_sort_random_custom_array_negative_jmhTest.class
 org/sample/jmh_generated/MyBenchmark_quick_sort_random_sorted_reversed_array_jmhTest.class
 org/sample/jmh_generated/MyBenchmark_jmhType_B1.class
 org/sample/jmh_generated/MyBenchmark_quick_sort_random_custom_array_jmhTest.class
+org/sample/jmh_generated/MyBenchmark_quick_sort_random_custom_array_negative_jmhTest.class
 org/sample/jmh_generated/MyBenchmark_bubble_sort_random_sorted_reversed_array_jmhTest.class
 org/sample/Quick_Sort_Class.class
 org/sample/MyBenchmark.class

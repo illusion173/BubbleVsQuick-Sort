@@ -28,11 +28,7 @@ import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.Setup;
 import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.annotations.Warmup;
-import org.openjdk.jmh.infra.Blackhole;
-import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.RunnerException;
-import org.openjdk.jmh.runner.options.Options;
-import org.openjdk.jmh.runner.options.OptionsBuilder;
 import java.util.Arrays;
 
 // Class to implement bubble sort Algorithm
@@ -118,113 +114,147 @@ class Quick_Sort_Class {
 
 @State(Scope.Thread)
 public class MyBenchmark {
-	private final int LIST_SIZE = 1000;
+	private final int LIST_SIZE = 10000;
 	private int[] custom_arr;
+	private int[] custom_arr_negative;
 	private int[] sorted_array;
 	private int[] reverse_of_sorted_array;
 
-	private int[] custom_arr_2;
-	private int[] sorted_array_2;
-	private int[] reverse_of_sorted_array_2;
-
-	@Setup(Level.Iteration)
+	@Setup(Level.Trial)
 	public void setup() {
+		// Custom array only includes random positive numbers.
+		// Custom array negative can include random negative numbers as well as
+		// positive numbers
+		// sorted array will be sorted, but can include both negative and positive
+		// numbers
+		// reverse of sorted array is simply that, the reverse of the sorted array. Can
+		// include both negative and positive #s.
 		custom_arr = create_random_custom_array(LIST_SIZE);
+		custom_arr_negative = create_random_custom_array_negative(LIST_SIZE);
 		sorted_array = create_ordered_array(LIST_SIZE);
-		reverse_of_sorted_array = create_ordered_array_reverse(LIST_SIZE);
-		custom_arr_2 = custom_arr.clone();
-		sorted_array_2 = sorted_array.clone();
-		reverse_of_sorted_array_2 = reverse_of_sorted_array.clone();
+		reverse_of_sorted_array = create_ordered_array_reverse(sorted_array);
+	}
+
+	public static int[] create_random_custom_array_negative(int size) {
+		int[] num_array = new int[size];
+		for (int i = 0; i < size - 1; i++) {
+			num_array[i] = getRandomNumberUsingInts(-1500, 1500);
+		}
+		return num_array;
+	}
+
+	public static int getRandomNumberUsingInts(int min, int max) {
+		Random random = new Random();
+		return random.ints(min, max)
+				.findFirst()
+				.getAsInt();
 	}
 
 	public static int[] create_ordered_array(int size) {
 		int[] num_array = new int[size];
 		for (int i = 0; i < size - 1; i++) {
-			num_array[i] = i;
+			num_array[i] = getRandomNumberUsingInts(-1500, 1500);
 		}
+
+		Arrays.sort(num_array);
 		return num_array;
 	}
 
-	public static int[] create_ordered_array_reverse(int size) {
-		int[] num_array = new int[size];
-		for (int i = size; i > 0; i--) {
-			num_array[Math.abs(i - size)] = i;
-		}
-		return num_array;
+	public static int[] create_ordered_array_reverse(int[] array) {
+		Collections.reverse(Arrays.asList(array));
+		return array;
 	}
 
 	public static int[] create_random_custom_array(int size) {
 		int[] new_array = new int[size];
-
-		// Provided by java.util.Random, allows nextInt random num generator
-		Random rand = new Random();
 		for (int i = 0; i < size; i++) {
 
-			new_array[i] = rand.nextInt(1500);
+			new_array[i] = getRandomNumberUsingInts(0, 1500);
 		}
 		return new_array;
 	}
 
 	@Benchmark
-	@BenchmarkMode(Mode.AverageTime)
+	@BenchmarkMode(Mode.All)
 	@OutputTimeUnit(TimeUnit.NANOSECONDS)
 	@Fork(value = 1)
-	@Warmup(iterations = 3)
-	@Measurement(iterations = 5)
+	@Warmup(iterations = 1)
+	@Measurement(iterations = 1)
 	public int[] bubble_sort_random_sorted_array() throws InterruptedException {
 		return new Bubble_Sort_Class().bubble_sort(sorted_array);
 	}
 
 	@Benchmark
-	@BenchmarkMode(Mode.AverageTime)
+	@BenchmarkMode(Mode.All)
 	@OutputTimeUnit(TimeUnit.NANOSECONDS)
 	@Fork(value = 1)
-	@Warmup(iterations = 3)
-	@Measurement(iterations = 5)
+	@Warmup(iterations = 1)
+	@Measurement(iterations = 1)
 	public int[] bubble_sort_random_sorted_reversed_array() throws InterruptedException {
 		return new Bubble_Sort_Class().bubble_sort(reverse_of_sorted_array);
 	}
 
 	@Benchmark
-	@BenchmarkMode(Mode.AverageTime)
+	@BenchmarkMode(Mode.All)
 	@OutputTimeUnit(TimeUnit.NANOSECONDS)
 	@Fork(value = 1)
-	@Warmup(iterations = 3)
-	@Measurement(iterations = 5)
+	@Warmup(iterations = 1)
+	@Measurement(iterations = 1)
 	public int[] bubble_sort_random_custom_array() throws InterruptedException {
 		return new Bubble_Sort_Class().bubble_sort(custom_arr);
 	}
 
 	@Benchmark
-	@BenchmarkMode(Mode.AverageTime)
+	@BenchmarkMode(Mode.All)
 	@OutputTimeUnit(TimeUnit.NANOSECONDS)
 	@Fork(value = 1)
-	@Warmup(iterations = 3)
-	@Measurement(iterations = 5)
-	public void quick_sort_random_sorted_array() throws InterruptedException {
-		Quick_Sort_Class.quickSort(sorted_array_2, 0, sorted_array_2.length - 1);
+	@Warmup(iterations = 1)
+	@Measurement(iterations = 1)
+	public int[] bubble_sort_random_custom_array_negative() throws InterruptedException {
+		return new Bubble_Sort_Class().bubble_sort(custom_arr_negative);
 	}
 
 	@Benchmark
-	@BenchmarkMode(Mode.AverageTime)
+	@BenchmarkMode(Mode.All)
 	@OutputTimeUnit(TimeUnit.NANOSECONDS)
 	@Fork(value = 1)
-	@Warmup(iterations = 3)
-	@Measurement(iterations = 5)
+	@Warmup(iterations = 1)
+	@Measurement(iterations = 1)
+	public void quick_sort_random_sorted_array() throws InterruptedException {
+		Quick_Sort_Class.quickSort(sorted_array, 0, LIST_SIZE - 1);
+	}
+
+	@Benchmark
+	@BenchmarkMode(Mode.All)
+	@OutputTimeUnit(TimeUnit.NANOSECONDS)
+	@Fork(value = 1)
+	@Warmup(iterations = 1)
+	@Measurement(iterations = 1)
 	public void quick_sort_random_sorted_reversed_array() throws InterruptedException {
 
-		Quick_Sort_Class.quickSort(reverse_of_sorted_array_2, 0, reverse_of_sorted_array_2.length - 1);
+		Quick_Sort_Class.quickSort(reverse_of_sorted_array, 0, LIST_SIZE - 1);
 	}
 
 	@Benchmark
-	@BenchmarkMode(Mode.AverageTime)
+	@BenchmarkMode(Mode.All)
 	@OutputTimeUnit(TimeUnit.NANOSECONDS)
 	@Fork(value = 1)
-	@Warmup(iterations = 3)
-	@Measurement(iterations = 5)
+	@Warmup(iterations = 1)
+	@Measurement(iterations = 1)
 	public void quick_sort_random_custom_array() throws InterruptedException {
 
-		Quick_Sort_Class.quickSort(custom_arr_2, 0, custom_arr_2.length - 1);
+		Quick_Sort_Class.quickSort(custom_arr, 0, LIST_SIZE - 1);
+	}
+
+	@Benchmark
+	@BenchmarkMode(Mode.All)
+	@OutputTimeUnit(TimeUnit.NANOSECONDS)
+	@Fork(value = 1)
+	@Warmup(iterations = 1)
+	@Measurement(iterations = 1)
+	public void quick_sort_random_custom_array_negative() throws InterruptedException {
+
+		Quick_Sort_Class.quickSort(custom_arr_negative, 0, LIST_SIZE - 1);
 	}
 
 	public static void main(String Args[]) throws RunnerException {

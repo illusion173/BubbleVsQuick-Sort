@@ -71,7 +71,6 @@ public final class MyBenchmark_quick_sort_random_sorted_array_jmhTest {
             MyBenchmark_jmhType l_mybenchmark0_0 = _jmh_tryInit_f_mybenchmark0_0(control);
 
             control.preSetup();
-            l_mybenchmark0_0.setup();
 
 
             control.announceWarmupReady();
@@ -139,7 +138,6 @@ public final class MyBenchmark_quick_sort_random_sorted_array_jmhTest {
             MyBenchmark_jmhType l_mybenchmark0_0 = _jmh_tryInit_f_mybenchmark0_0(control);
 
             control.preSetup();
-            l_mybenchmark0_0.setup();
 
 
             control.announceWarmupReady();
@@ -207,7 +205,6 @@ public final class MyBenchmark_quick_sort_random_sorted_array_jmhTest {
             MyBenchmark_jmhType l_mybenchmark0_0 = _jmh_tryInit_f_mybenchmark0_0(control);
 
             control.preSetup();
-            l_mybenchmark0_0.setup();
 
 
             control.announceWarmupReady();
@@ -294,7 +291,6 @@ public final class MyBenchmark_quick_sort_random_sorted_array_jmhTest {
             MyBenchmark_jmhType l_mybenchmark0_0 = _jmh_tryInit_f_mybenchmark0_0(control);
 
             control.preSetup();
-            l_mybenchmark0_0.setup();
 
 
             notifyControl.startMeasurement = true;
@@ -335,6 +331,7 @@ public final class MyBenchmark_quick_sort_random_sorted_array_jmhTest {
         MyBenchmark_jmhType val = f_mybenchmark0_0;
         if (val == null) {
             val = new MyBenchmark_jmhType();
+            val.setup();
             f_mybenchmark0_0 = val;
         }
         return val;
