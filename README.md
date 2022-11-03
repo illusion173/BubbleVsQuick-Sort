@@ -13,10 +13,10 @@ To physically look at the code being ran for this assignment go to:
 `M4-webb/test/src/main/java/org/sample/MyBenchmark.java`
 
 ## Compilation & Execution Instructions
-1. cd test/
-2. mvn clean install
-3. mvn clean verify
-4. java -jar target/benchmarks.jar
+1. `cd test/`
+2. `mvn clean install`
+3. `mvn clean verify`
+4. `java -jar target/benchmarks.jar`
 
 ### System Originally Ran On:
 - Operating System: Arch Linux x86_64
