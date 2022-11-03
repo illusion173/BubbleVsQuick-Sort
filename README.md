@@ -12,7 +12,7 @@ JMH is used as a benchmarking framework for keeping track of runtime.<br>
 
 To physically look at the code being ran for this assignment go to:
 `BubbleVsQuick-Sort/test/src/main/java/org/sample/MyBenchmark.java`<br>
-To edit the number of elements in all arrays when testing, go to the above file, and change ["LIST_SIZE"](https://github.com/illusion173/BubbleVsQuick-Sort/blob/d7b821bd0a1566e181da8136aafda1b381cac32e/test/src/main/java/org/sample/MyBenchmark.java#L121)
+To edit the number of elements in all arrays when testing, go to the above file, and change ["LIST_SIZE"](https://github.com/illusion173/BubbleVsQuick-Sort/blob/2097f0f7ae72df1ec10d3b79619754b736375270/test/src/main/java/org/sample/MyBenchmark.java#L117)
 
 
 ## Compilation & Execution Instructions
