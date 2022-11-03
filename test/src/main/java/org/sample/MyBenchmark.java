@@ -6,7 +6,7 @@ package org.sample;
  * Date: 11/2/22
  * Class: CS315
  * Basic Sorting Algorithn: Bubble Sort
- * Advanced Sorting Algorithn: Merge Sort
+ * Advanced Sorting Algorithn: Quick Sort
  * See README.md for instructions on how to run this file.
 
  * Link for Reference of how to structure JMH Properly
