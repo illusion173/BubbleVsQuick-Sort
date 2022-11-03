@@ -6,7 +6,7 @@
 2. Quick Sort
 
 ## Dependency Requirements
-1. Requires Maven for [JMH](https://github.com/openjdk/jmh).
+1. Requires [Maven](https://github.com/apache/maven) for [JMH](https://github.com/openjdk/jmh).
 
 JMH is used as a benchmarking framework for keeping track of runtime.<br>
 To physically look at the code being ran for this assignment go to:
