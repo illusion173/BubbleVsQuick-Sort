@@ -19,7 +19,7 @@ To edit the number of elements in all arrays when testing, go to the above file,
 1. `cd test/`
 2. `mvn clean install`
 3. `mvn clean verify`
-4. `java -jar target/benchmarks.jar`
+4. `java -jar target/benchmarks.jar`<br>
 For Json Outputs:
 `java -jar target/benchmarks.jar -rf json`
 
