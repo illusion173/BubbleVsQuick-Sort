@@ -13,7 +13,6 @@ To physically look at the code being ran for this assignment go to:
 `M4-webb/test/src/main/java/org/sample/MyBenchmark.java`
 
 ## Compilation & Execution Instructions
-Be in the M4-Webb Directory.<br>
 1. cd test/
 2. mvn clean install
 3. mvn clean verify
