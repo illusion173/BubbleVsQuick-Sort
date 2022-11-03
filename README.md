@@ -22,10 +22,16 @@ To edit the number of elements in all arrays when testing, go to the above file,
 4. `java -jar target/benchmarks.jar`
 
 
-### System Originally Ran On:
+## Contribution
+Add more algorithms! Merge Sort, insertion sort, etc.
+Do a pull request and I can add it!
+
+## System Originally Ran On:
 - Operating System: Arch Linux x86_64
 - Kernel: 6.0.2-arch-1
 - CPU: AMD Ryzen 7 5800H
 - GPU: GeForce RTX 3060M
 - Memory: 16GB 3200 MHz
 - OpenJDK Version: 19.0.1
+
+
