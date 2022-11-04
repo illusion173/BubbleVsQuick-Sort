@@ -75,7 +75,7 @@ public final class MyBenchmark_bubble_sort_random_sorted_reversed_array_jmhTest 
 
             control.announceWarmupReady();
             while (control.warmupShouldWait) {
-                blackhole.consume(l_mybenchmark0_0.bubble_sort_random_sorted_reversed_array());
+                l_mybenchmark0_0.bubble_sort_random_sorted_reversed_array();
                 res.allOps++;
             }
 
@@ -85,7 +85,7 @@ public final class MyBenchmark_bubble_sort_random_sorted_reversed_array_jmhTest 
             control.announceWarmdownReady();
             try {
                 while (control.warmdownShouldWait) {
-                    blackhole.consume(l_mybenchmark0_0.bubble_sort_random_sorted_reversed_array());
+                    l_mybenchmark0_0.bubble_sort_random_sorted_reversed_array();
                     res.allOps++;
                 }
             } catch (Throwable e) {
@@ -116,7 +116,7 @@ public final class MyBenchmark_bubble_sort_random_sorted_reversed_array_jmhTest 
         long realTime = 0;
         result.startTime = System.nanoTime();
         do {
-            blackhole.consume(l_mybenchmark0_0.bubble_sort_random_sorted_reversed_array());
+            l_mybenchmark0_0.bubble_sort_random_sorted_reversed_array();
             operations++;
         } while(!control.isDone);
         result.stopTime = System.nanoTime();
@@ -142,7 +142,7 @@ public final class MyBenchmark_bubble_sort_random_sorted_reversed_array_jmhTest 
 
             control.announceWarmupReady();
             while (control.warmupShouldWait) {
-                blackhole.consume(l_mybenchmark0_0.bubble_sort_random_sorted_reversed_array());
+                l_mybenchmark0_0.bubble_sort_random_sorted_reversed_array();
                 res.allOps++;
             }
 
@@ -152,7 +152,7 @@ public final class MyBenchmark_bubble_sort_random_sorted_reversed_array_jmhTest 
             control.announceWarmdownReady();
             try {
                 while (control.warmdownShouldWait) {
-                    blackhole.consume(l_mybenchmark0_0.bubble_sort_random_sorted_reversed_array());
+                    l_mybenchmark0_0.bubble_sort_random_sorted_reversed_array();
                     res.allOps++;
                 }
             } catch (Throwable e) {
@@ -183,7 +183,7 @@ public final class MyBenchmark_bubble_sort_random_sorted_reversed_array_jmhTest 
         long realTime = 0;
         result.startTime = System.nanoTime();
         do {
-            blackhole.consume(l_mybenchmark0_0.bubble_sort_random_sorted_reversed_array());
+            l_mybenchmark0_0.bubble_sort_random_sorted_reversed_array();
             operations++;
         } while(!control.isDone);
         result.stopTime = System.nanoTime();
@@ -209,7 +209,7 @@ public final class MyBenchmark_bubble_sort_random_sorted_reversed_array_jmhTest 
 
             control.announceWarmupReady();
             while (control.warmupShouldWait) {
-                blackhole.consume(l_mybenchmark0_0.bubble_sort_random_sorted_reversed_array());
+                l_mybenchmark0_0.bubble_sort_random_sorted_reversed_array();
                 res.allOps++;
             }
 
@@ -223,7 +223,7 @@ public final class MyBenchmark_bubble_sort_random_sorted_reversed_array_jmhTest 
             control.announceWarmdownReady();
             try {
                 while (control.warmdownShouldWait) {
-                    blackhole.consume(l_mybenchmark0_0.bubble_sort_random_sorted_reversed_array());
+                    l_mybenchmark0_0.bubble_sort_random_sorted_reversed_array();
                     res.allOps++;
                 }
             } catch (Throwable e) {
@@ -261,7 +261,7 @@ public final class MyBenchmark_bubble_sort_random_sorted_reversed_array_jmhTest 
             }
             for (int b = 0; b < batchSize; b++) {
                 if (control.volatileSpoiler) return;
-                blackhole.consume(l_mybenchmark0_0.bubble_sort_random_sorted_reversed_array());
+                l_mybenchmark0_0.bubble_sort_random_sorted_reversed_array();
             }
             if (sample) {
                 buffer.add((System.nanoTime() - time) / opsPerInv);
@@ -317,7 +317,7 @@ public final class MyBenchmark_bubble_sort_random_sorted_reversed_array_jmhTest 
         result.startTime = System.nanoTime();
         for (int b = 0; b < batchSize; b++) {
             if (control.volatileSpoiler) return;
-            blackhole.consume(l_mybenchmark0_0.bubble_sort_random_sorted_reversed_array());
+            l_mybenchmark0_0.bubble_sort_random_sorted_reversed_array();
         }
         result.stopTime = System.nanoTime();
         result.realTime = realTime;

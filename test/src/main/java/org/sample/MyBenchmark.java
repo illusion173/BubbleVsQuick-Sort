@@ -12,8 +12,6 @@ package org.sample;
  * Link for Reference of how to structure JMH Properly
  * https://github.com/ksean/jmh-data-structure-and-sorting-benchmarks/blob/master/src/main/java/com/ks/sort/SortingAlgorithmBenchmark.java
  */
-import java.io.*;
-import java.lang.*;
 import java.util.*;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -31,9 +29,11 @@ import org.openjdk.jmh.annotations.Warmup;
 import org.openjdk.jmh.runner.RunnerException;
 import java.util.Arrays;
 
+// Use of static for both classes avoids having creating a new object to call the sorting function.
+// Due to the functionality of the JMH its best to avoid using non static fuctions.
 // Class to implement bubble sort Algorithm
 class Bubble_Sort_Class {
-	public int[] bubble_sort(int[] array) throws InterruptedException {
+	static void bubble_sort(int[] array) throws InterruptedException {
 		int n = array.length;
 		for (int i = 0; i < n - 1; i++)
 			for (int j = 0; j < n - i - 1; j++)
@@ -43,8 +43,6 @@ class Bubble_Sort_Class {
 					array[j] = array[j + 1];
 					array[j + 1] = temp;
 				}
-
-		return array;
 	}
 }
 
@@ -114,7 +112,14 @@ class Quick_Sort_Class {
 
 @State(Scope.Thread)
 public class MyBenchmark {
-	private final int LIST_SIZE = 10000;
+
+	// First Trial: 1000
+	// Second Trial: 10000
+	// Third Trial: 50000
+	// Fourth Trial: 100000
+
+	// CHANGE THIS # HERE!
+	private final int LIST_SIZE = 100000;
 	private int[] custom_arr;
 	private int[] custom_arr_negative;
 	private int[] sorted_array;
@@ -143,6 +148,8 @@ public class MyBenchmark {
 		return num_array;
 	}
 
+	// Main driver for random number generation, given a bottom and a top, generate
+	// an integer between it.
 	public static int getRandomNumberUsingInts(int min, int max) {
 		Random random = new Random();
 		return random.ints(min, max)
@@ -150,6 +157,8 @@ public class MyBenchmark {
 				.getAsInt();
 	}
 
+	// This creates a random number array given a certain size, then sorts these
+	// positive and negative numbers lowest to highest.
 	public static int[] create_ordered_array(int size) {
 		int[] num_array = new int[size];
 		for (int i = 0; i < size - 1; i++) {
@@ -160,11 +169,14 @@ public class MyBenchmark {
 		return num_array;
 	}
 
+	// Simply reverses a given array.
 	public static int[] create_ordered_array_reverse(int[] array) {
 		Collections.reverse(Arrays.asList(array));
 		return array;
 	}
 
+	// This allows one to create a completely random array of positive numbers given
+	// an integer, size.
 	public static int[] create_random_custom_array(int size) {
 		int[] new_array = new int[size];
 		for (int i = 0; i < size; i++) {
@@ -175,83 +187,83 @@ public class MyBenchmark {
 	}
 
 	@Benchmark
-	@BenchmarkMode(Mode.All)
+	@BenchmarkMode(Mode.AverageTime)
 	@OutputTimeUnit(TimeUnit.NANOSECONDS)
 	@Fork(value = 1)
-	@Warmup(iterations = 1)
-	@Measurement(iterations = 1)
-	public int[] bubble_sort_random_sorted_array() throws InterruptedException {
-		return new Bubble_Sort_Class().bubble_sort(sorted_array);
+	@Warmup(iterations = 2)
+	@Measurement(iterations = 5)
+	public void bubble_sort_random_sorted_array() throws InterruptedException {
+		Bubble_Sort_Class.bubble_sort(sorted_array);
 	}
 
 	@Benchmark
-	@BenchmarkMode(Mode.All)
+	@BenchmarkMode(Mode.AverageTime)
 	@OutputTimeUnit(TimeUnit.NANOSECONDS)
 	@Fork(value = 1)
-	@Warmup(iterations = 1)
-	@Measurement(iterations = 1)
-	public int[] bubble_sort_random_sorted_reversed_array() throws InterruptedException {
-		return new Bubble_Sort_Class().bubble_sort(reverse_of_sorted_array);
+	@Warmup(iterations = 2)
+	@Measurement(iterations = 5)
+	public void bubble_sort_random_sorted_reversed_array() throws InterruptedException {
+		Bubble_Sort_Class.bubble_sort(reverse_of_sorted_array);
 	}
 
 	@Benchmark
-	@BenchmarkMode(Mode.All)
+	@BenchmarkMode(Mode.AverageTime)
 	@OutputTimeUnit(TimeUnit.NANOSECONDS)
 	@Fork(value = 1)
-	@Warmup(iterations = 1)
-	@Measurement(iterations = 1)
-	public int[] bubble_sort_random_custom_array() throws InterruptedException {
-		return new Bubble_Sort_Class().bubble_sort(custom_arr);
+	@Warmup(iterations = 2)
+	@Measurement(iterations = 5)
+	public void bubble_sort_random_custom_array() throws InterruptedException {
+		Bubble_Sort_Class.bubble_sort(custom_arr);
 	}
 
 	@Benchmark
-	@BenchmarkMode(Mode.All)
+	@BenchmarkMode(Mode.AverageTime)
 	@OutputTimeUnit(TimeUnit.NANOSECONDS)
 	@Fork(value = 1)
-	@Warmup(iterations = 1)
-	@Measurement(iterations = 1)
-	public int[] bubble_sort_random_custom_array_negative() throws InterruptedException {
-		return new Bubble_Sort_Class().bubble_sort(custom_arr_negative);
+	@Warmup(iterations = 2)
+	@Measurement(iterations = 5)
+	public void bubble_sort_rankdom_custom_array_negative() throws InterruptedException {
+		Bubble_Sort_Class.bubble_sort(custom_arr_negative);
 	}
 
 	@Benchmark
-	@BenchmarkMode(Mode.All)
+	@BenchmarkMode(Mode.AverageTime)
 	@OutputTimeUnit(TimeUnit.NANOSECONDS)
 	@Fork(value = 1)
-	@Warmup(iterations = 1)
-	@Measurement(iterations = 1)
+	@Warmup(iterations = 2)
+	@Measurement(iterations = 5)
 	public void quick_sort_random_sorted_array() throws InterruptedException {
 		Quick_Sort_Class.quickSort(sorted_array, 0, LIST_SIZE - 1);
 	}
 
 	@Benchmark
-	@BenchmarkMode(Mode.All)
+	@BenchmarkMode(Mode.AverageTime)
 	@OutputTimeUnit(TimeUnit.NANOSECONDS)
 	@Fork(value = 1)
-	@Warmup(iterations = 1)
-	@Measurement(iterations = 1)
+	@Warmup(iterations = 2)
+	@Measurement(iterations = 5)
 	public void quick_sort_random_sorted_reversed_array() throws InterruptedException {
 
 		Quick_Sort_Class.quickSort(reverse_of_sorted_array, 0, LIST_SIZE - 1);
 	}
 
 	@Benchmark
-	@BenchmarkMode(Mode.All)
+	@BenchmarkMode(Mode.AverageTime)
 	@OutputTimeUnit(TimeUnit.NANOSECONDS)
 	@Fork(value = 1)
-	@Warmup(iterations = 1)
-	@Measurement(iterations = 1)
+	@Warmup(iterations = 2)
+	@Measurement(iterations = 5)
 	public void quick_sort_random_custom_array() throws InterruptedException {
 
 		Quick_Sort_Class.quickSort(custom_arr, 0, LIST_SIZE - 1);
 	}
 
 	@Benchmark
-	@BenchmarkMode(Mode.All)
+	@BenchmarkMode(Mode.AverageTime)
 	@OutputTimeUnit(TimeUnit.NANOSECONDS)
 	@Fork(value = 1)
-	@Warmup(iterations = 1)
-	@Measurement(iterations = 1)
+	@Warmup(iterations = 2)
+	@Measurement(iterations = 5)
 	public void quick_sort_random_custom_array_negative() throws InterruptedException {
 
 		Quick_Sort_Class.quickSort(custom_arr_negative, 0, LIST_SIZE - 1);

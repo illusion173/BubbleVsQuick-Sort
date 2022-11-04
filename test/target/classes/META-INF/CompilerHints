@@ -4,9 +4,9 @@ dontinline,*.*_sample_jmhStub
 dontinline,*.*_ss_jmhStub
 dontinline,*.*_thrpt_jmhStub
 inline,org/sample/MyBenchmark.bubble_sort_random_custom_array
-inline,org/sample/MyBenchmark.bubble_sort_random_custom_array_negative
 inline,org/sample/MyBenchmark.bubble_sort_random_sorted_array
 inline,org/sample/MyBenchmark.bubble_sort_random_sorted_reversed_array
+inline,org/sample/MyBenchmark.bubble_sort_rankdom_custom_array_negative
 inline,org/sample/MyBenchmark.quick_sort_random_custom_array
 inline,org/sample/MyBenchmark.quick_sort_random_custom_array_negative
 inline,org/sample/MyBenchmark.quick_sort_random_sorted_array
